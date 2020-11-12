@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New Superhero</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-warning">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
