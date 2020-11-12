@@ -83,7 +83,7 @@ namespace SuperheroCreator.Controllers
         }
 
         // GET: SuperheroController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Superhero superhero)
         {
             return View();
         }
