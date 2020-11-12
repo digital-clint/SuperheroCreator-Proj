@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,11 @@ namespace SuperheroCreator.Controllers
         }
 
         // GET: SuperheroController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View(id);
+            Superhero selectedHero = new Superhero();
+            selectedHero = _context.Superheroes.Where(x => x.Name == id).FirstOrDefault();
+            return View(selectedHero);
         }
 
         // GET: SuperheroController/Create
