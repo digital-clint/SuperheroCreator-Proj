@@ -26,10 +26,10 @@ namespace SuperheroCreator.Controllers
         }
 
         // GET: SuperheroController/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             Superhero selectedHero = new Superhero();
-            selectedHero = _context.Superheroes.Where(x => x.Name == id).FirstOrDefault();
+            selectedHero = _context.Superheroes.Where(x => x.Id == id).FirstOrDefault();
             return View(selectedHero);
         }
 
@@ -60,16 +60,20 @@ namespace SuperheroCreator.Controllers
         // GET: SuperheroController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Superhero selectedHero = new Superhero();
+            selectedHero = _context.Superheroes.Where(x => x.Id == id).FirstOrDefault();
+            return View(selectedHero);
         }
 
         // POST: SuperheroController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Superhero superhero)
         {
             try
             {
+                _context.Superheroes.Update(superhero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
